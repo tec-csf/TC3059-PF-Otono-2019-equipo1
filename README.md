@@ -301,7 +301,7 @@ Línea 42
 
 6. Exponer la apliación a internet
 
-`kubectl expose deployment colegio-app --type=LoadBalancer --port 80 --target-port [Puerto asignado]`
+`kubectl expose deployment colegio-app --type=LoadBalancer --port 80 --target-port 4200`
 
 7. Acceder a la aplicación en un browser
 
