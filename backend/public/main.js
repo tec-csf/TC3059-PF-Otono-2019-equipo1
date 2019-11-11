@@ -3413,7 +3413,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/andoni/Documents/BasesDatosAvanzadas/TC3041-PF-Primavera-2019-equipo-5/frontend/src/main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! /home/joanandoni/Documents/Angular/TC3059-PF-Otono-2019-equipo1/frontend/src/main.ts */"./src/main.ts");
 
 
 /***/ })
