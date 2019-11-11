@@ -39,7 +39,6 @@ const admins = require('./routes/admins');
 // Port Number
 const port = 3000;
 
-const alumnos = require('./routes/alumnos');
 // CORS Middleware its for make the routes to create the petitions
 app.use(cors());
 
