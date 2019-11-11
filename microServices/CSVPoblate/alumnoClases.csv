@@ -1,0 +1,5 @@
+matricula,curp,nombre,paterno,materno,nivel,grado,grupo,fechaNacimiento,email,password
+A00001,GORJ38920,Juan,Gonzalez,Hernández,Secundaria,1,A,1996-07-20,a@hotmail.com,12345
+A00002,GORJ38921,Alberto,Perez,Torres,Secundaria,1,A,1996-07-21,a@hotmail.com,12345
+A00003,GORJ38922,Enrique,Gutierrez,Hernández,Secundaria,1,A,1996-07-22,a@hotmail.com,12345
+A00004,GORJ38923,Ana,Garcia,Rios,Secundaria,1,A,1996-07-23,a@hotmail.com,12345
