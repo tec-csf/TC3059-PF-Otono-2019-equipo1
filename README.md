@@ -225,46 +225,6 @@ _[Por cada endpoint debe incluir lo siguiente:]_
 
 http://localhost:4200
 
-### Para ejecutarlo local con Minikube
-
-1. Clonar el repositorio de GitHub
-
-`git clone https://github.com/tec-csf/TC3059-PF-Otono-2019-equipo1.git`
-
-2. Iniciar el clúster de Minikube.
-
-`minikube start`
-
-3. Habilitar el contexto de Docker
-
-`eval $(minikube docker-env)`
-
-4. Cambiarse a la carpeta del proyecto
-
-`cd TC3059-PF-Otono-2019-equipo1/`
-
-5. Compilar las imágenes de Docker
-
-`docker build -t frontend-image frontend/.`
-
-`docker build -t backend-image backend/.`
-
-6. Desplegar la solución en el clúster de Kubernetes.
-
-`kubectl apply -f appDeployment.yaml`
-
-7. Obtener la IP del clúster de Minikube
-
-`minikube ip`
-
-8. Obtener el puerto donde se encuentra escuchando el servicio
-
-`kubectl get svc`
-
-9. Acceder a la aplicación en un browser
-
-`http://<IP-Minikube>:<Puerto-Servicio>`
-
 ### Para ejecutarlo en la nube (Google Cloud)
 
 #### En GCLOUD console
