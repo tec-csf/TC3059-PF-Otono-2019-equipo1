@@ -28,6 +28,8 @@ mongoose.connection.on('error', (err) => {
   console.log('Database error: ' + err);
 });
 
+'use strict';
+
 // Start our server app to make the petitions
 const app = express();
 
@@ -38,6 +40,7 @@ const admins = require('./routes/admins');
 
 // Port Number
 const port = 3000;
+const host = '0.0.0.0'
 
 // CORS Middleware its for make the routes to create the petitions
 app.use(cors());
@@ -68,6 +71,6 @@ app.get('*', (req, res) => {
 });
 
 // Start Server on the port setted
-app.listen(port, () => {
-  console.log('Server started on port ' + port);
+app.listen(port, host, () => {
+  console.log('Server started on ' + host + ':' + port);
 });
