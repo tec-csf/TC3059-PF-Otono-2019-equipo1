@@ -21,7 +21,7 @@ export class AuthService {
   matriculaVerAlumno: any;
   matriculaVerProfesor: any;
 
-  route: String = 'http://localhost:3000';
+  route: String = 'http://192.168.39.33:30538';
 
   grupoAlumnos: Object = {
     nivel: String,

@@ -1,3 +1,5 @@
+'use strict';
+
 // Make the comunication with a server to create petitions
 const express = require('express');
 // Make the paths for the paths to create the petitions
@@ -28,8 +30,6 @@ mongoose.connection.on('error', (err) => {
   console.log('Database error: ' + err);
 });
 
-'use strict';
-
 // Start our server app to make the petitions
 const app = express();
 
@@ -38,9 +38,9 @@ const alumnos = require('./routes/alumnos');
 const profesores = require('./routes/profesores');
 const admins = require('./routes/admins');
 
-// Port Number
-const port = 3000;
-const host = '0.0.0.0'
+// Constants
+const PORT = 3000;
+const HOST = '0.0.0.0';
 
 // CORS Middleware its for make the routes to create the petitions
 app.use(cors());
@@ -71,6 +71,9 @@ app.get('*', (req, res) => {
 });
 
 // Start Server on the port setted
-app.listen(port, host, () => {
-  console.log('Server started on ' + host + ':' + port);
-});
+// app.listen(PORT, HOST, () => {
+//   console.log('Server started on ' + host + ':' + port);
+// });
+
+app.listen(PORT, HOST);
+console.log(`Running on http://${HOST}:${PORT}`);
