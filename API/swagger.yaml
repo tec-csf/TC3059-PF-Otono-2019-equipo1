@@ -3,7 +3,7 @@ info:
   description: "Google Cloud Endpoints API demo."
   title: "Endpoints Demo"
   version: "1.0"
-host: "test-vcn-ep.appspot.com"
+host: "ascendant-acre-256217.appspot.com"
 consumes:
 - "application/json"
 produces:
@@ -42,7 +42,7 @@ paths:
         metricCosts:
           "read-requests": 1
       security:
-      - auth0_jwk: []
+      - api_key: []
   /api/v1/students:
     get:
       summary: "Consulta de alumno"
@@ -50,17 +50,11 @@ paths:
       operationId: "getalumno"
       produces:
       - application/json
-      parameters:
-      - name: alumnos
-        in: path
-        required: true
-        type: string
-        description: 'Servicio a consultar alumnos'
       responses:
         200:
           description: OK
       security:
-      - auth0_jwk: []
+      - api_key: []
   /api/v1/student/{_id}:
     get:
       summary: "Consulta de alumnos"
@@ -69,16 +63,16 @@ paths:
       produces:
       - application/json
       parameters:
-      - name: alumno
+      - name: _id
         in: path
         required: true
         type: string
-        description: 'Servicio a consultar los alumnos'
+        description: 'ID a consultar'
       responses:
         200:
           description: OK
       security:
-      - auth0_jwk: []
+      - api_key: []
   /api/v1/subjects:
     get:
       summary: "Consulta de materias"
@@ -86,17 +80,11 @@ paths:
       operationId: "getmaterias"
       produces:
       - application/json
-      parameters:
-      - name: materias
-        in: path
-        required: true
-        type: string
-        description: 'Servicio a consultar materias'
       responses:
         200:
           description: OK
       security:
-      - auth0_jwk: []
+      - api_key: []
   /api/v1/subject/{_id}:
     get:
       summary: "Consulta de materia"
@@ -105,52 +93,46 @@ paths:
       produces:
       - application/json
       parameters:
-      - name: materia
+      - name: _id
         in: path
         required: true
         type: string
-        description: 'Servicio a consultar materia'
+        description: 'ID a consultar'
       responses:
         200:
           description: OK
       security:
-      - auth0_jwk: []
+      - api_key: []
   /api/v1/teachers:
     get:
       summary: "Consulta de maestros"
-      description: "Regresa las materias en la base de datos"
-      operationId: "getmaterias"
+      description: "Regresa los maestros en la base de datos"
+      operationId: "getmaestros"
       produces:
       - application/json
-      parameters:
-      - name: materias
-        in: path
-        required: true
-        type: string
-        description: 'Servicio a consultar las materias'
       responses:
         200:
           description: OK
       security:
-      - auth0_jwk: []
+      - api_key: []
   /api/v1/teacher/{_id}:
     get:
       summary: "Consulta de maestro"
-      description: "Regresa el maesttro en la base de datos"
+      description: "Regresa el maestro en la base de datos"
       operationId: "getmaestro"
       produces:
       - application/json
       parameters:
-      - name: maestro
+      - name: _id
         in: path
         required: true
         type: string
-        description: 'Servicio a consultar el maestro'
+        description: 'ID a consultar'
       responses:
         200:
           description: OK
       security:
-      - auth0_jwk: []
+      - api_key: []
   /auth/get_token:
     get:
       description: Obtener un JWT válido
@@ -177,5 +159,5 @@ securityDefinitions:
       type: "oauth2"
       x-google-issuer: "https://vcubells.auth0.com/"
       x-google-jwks_uri: "https://vcubells.auth0.com/.well-known/jwks.json"
-      x-google-audiences: "https://test-vcn-ep.appspot.com"
+      x-google-audiences: "https://ascendant-acre-256217.appspot.com"
 

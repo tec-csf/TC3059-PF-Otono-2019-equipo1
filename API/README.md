@@ -1,14 +1,35 @@
-## Configurar Cloud Endpoints
+# Administración de colegios API REST
 
-A continuación se muestran los pasoa a seguir para habilitar la autenticación de la API y el control de la misma utilizando [Google Cloud Endpoints](https://cloud.google.com/endpoints).
+## Uso
+### Endpoints
+Todos los endpoints regresan un JSON con la información consultada
 
-0. Antes de realizar cualquier operación, modifique los archivos `openapi.yaml` y `app-endpoints.yaml` y sustituya PROJECT_ID por el ID de su proyecto.
+- /api/v1/students -> Consulte todos los estudiantes en la base de datos
+- /api/v1/student/<_id> -> Consulte un estudiante en la base de datos pasando su ID como parámetro
+- /api/v1/subjects -> Consulte todos las materias en la base de datos
+- /api/v1/subject/<_id> -> Consulte una materia en la base de datos pasando su ID como parámetro
+- /api/v1/teachers -> Consulte todos los maestros en la base de datos
+- /api/v1/teacher/<_id> -> Consulte un maestro en la base de datos pasando su ID como parámetro
 
+### API KEY
+Para consultar los endpoints es necesario obtener una API KEY en el portal de GCP
+
+- Genere una API key siguiendo las instrucciones que aparecen [aquí](https://cloud.google.com/docs/authentication/api-keys#creating_an_api_key).
+
+- Habilite su API siguiendo estas [instrucciones](https://cloud.google.com/endpoints/docs/openapi/enable-api).
+
+Al consultar un endopint se debe de pasar la llave como parámetro en la url ?key=YOURKEY, ejémplo:
+`https://wwww.apiUrl.com/api/v1/students?key=ajjnbcdicndcnbdjcnd`
+
+
+## Desarrolladores 
+### Desplegar y Configurar Cloud Endpoints
 1. Despliegue el servicio de Cloud Endpoints utilizando el comando:
 
 `gcloud endpoints services deploy swagger.yaml`
 
-2. Consulte los servicios habilitados:
+Si encuentra algun error verifique que los servicios estan habilitados
+2. Consulte los servicios:
 
 `gcloud services list`
 
@@ -28,11 +49,12 @@ por ejemplo:
 
 `gcloud services enable  endpoints.googleapis.com`
 
-5. Despliegue la aplicación con la configuración que incluye Cloud Endpoints:
+5. Cambien endpoints_api_service-name por el ID en el archivo app-endpoints.yaml
 
-`gcloud app deploy app-endpoints.yaml backend/back.yaml`
+6. Despliegue la aplicación con la configuración que incluye Cloud Endpoints:
 
-6. Genere una API key siguiendo las instrucciones que aparecen [aquí](https://cloud.google.com/docs/authentication/api-keys#creating_an_api_key).
+`gcloud app deploy app-endpoints.yaml`
 
-7. Habilite su API siguiendo estas [instrucciones](https://cloud.google.com/endpoints/docs/openapi/enable-api).
+7. Genere una API key siguiendo las instrucciones que aparecen [aquí](https://cloud.google.com/docs/authentication/api-keys#creating_an_api_key).
 
+8. Habilite su API siguiendo estas [instrucciones](https://cloud.google.com/endpoints/docs/openapi/enable-api).

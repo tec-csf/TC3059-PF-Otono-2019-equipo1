@@ -13,5 +13,5 @@ manual_scaling:
 endpoints_api_service:
   # The following values are to be replaced by information from the output of
   # 'gcloud endpoints services deploy openapi.yaml' command.
-  name: test-vcn-ep.appspot.com #ENDPOINTS-SERVICE-NAME
+  name: ascendant-acre-256217.appspot.com #ENDPOINTS-SERVICE-NAME
   rollout_strategy: managed
