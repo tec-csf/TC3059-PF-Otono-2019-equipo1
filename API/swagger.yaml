@@ -1,0 +1,181 @@
+swagger: "2.0"
+info:
+  description: "Google Cloud Endpoints API demo."
+  title: "Endpoints Demo"
+  version: "1.0"
+host: "test-vcn-ep.appspot.com"
+consumes:
+- "application/json"
+produces:
+- "application/json"
+schemes:
+- "https"
+- "http"
+
+x-google-management:
+  metrics:
+    - name: "read-requests"
+      displayName: "Main Requests"
+      valueType: INT64
+      metricKind: DELTA
+  quota:
+    limits:
+      - name: "read-limit"
+        metric: "read-requests"
+        unit: "1/min/{project}"
+        values:
+          STANDARD: 10
+
+paths:
+  "/":
+    get:
+      summary: "Home"
+      description: "Pagina principal de la API"
+      operationId: "main"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: OK
+      parameters: []
+      x-google-quota:
+        metricCosts:
+          "read-requests": 1
+      security:
+      - auth0_jwk: []
+  /api/v1/students:
+    get:
+      summary: "Consulta de alumno"
+      description: "Regresa los alumnos en la base de datos"
+      operationId: "getalumno"
+      produces:
+      - application/json
+      parameters:
+      - name: alumnos
+        in: path
+        required: true
+        type: string
+        description: 'Servicio a consultar alumnos'
+      responses:
+        200:
+          description: OK
+      security:
+      - auth0_jwk: []
+  /api/v1/student/{_id}:
+    get:
+      summary: "Consulta de alumnos"
+      description: "Regresa lel alumno en la base de datos"
+      operationId: "getalumnos"
+      produces:
+      - application/json
+      parameters:
+      - name: alumno
+        in: path
+        required: true
+        type: string
+        description: 'Servicio a consultar los alumnos'
+      responses:
+        200:
+          description: OK
+      security:
+      - auth0_jwk: []
+  /api/v1/subjects:
+    get:
+      summary: "Consulta de materias"
+      description: "Regresa las materias en la base de datos"
+      operationId: "getmaterias"
+      produces:
+      - application/json
+      parameters:
+      - name: materias
+        in: path
+        required: true
+        type: string
+        description: 'Servicio a consultar materias'
+      responses:
+        200:
+          description: OK
+      security:
+      - auth0_jwk: []
+  /api/v1/subject/{_id}:
+    get:
+      summary: "Consulta de materia"
+      description: "Regresa la materia en la base de datos"
+      operationId: "getsubject"
+      produces:
+      - application/json
+      parameters:
+      - name: materia
+        in: path
+        required: true
+        type: string
+        description: 'Servicio a consultar materia'
+      responses:
+        200:
+          description: OK
+      security:
+      - auth0_jwk: []
+  /api/v1/teachers:
+    get:
+      summary: "Consulta de maestros"
+      description: "Regresa las materias en la base de datos"
+      operationId: "getmaterias"
+      produces:
+      - application/json
+      parameters:
+      - name: materias
+        in: path
+        required: true
+        type: string
+        description: 'Servicio a consultar las materias'
+      responses:
+        200:
+          description: OK
+      security:
+      - auth0_jwk: []
+  /api/v1/teacher/{_id}:
+    get:
+      summary: "Consulta de maestro"
+      description: "Regresa el maesttro en la base de datos"
+      operationId: "getmaestro"
+      produces:
+      - application/json
+      parameters:
+      - name: maestro
+        in: path
+        required: true
+        type: string
+        description: 'Servicio a consultar el maestro'
+      responses:
+        200:
+          description: OK
+      security:
+      - auth0_jwk: []
+  /auth/get_token:
+    get:
+      description: Obtener un JWT válido
+      summary: Auth Get Token
+      operationId: AuthGetToken
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        200:
+          description: OK
+
+security:
+  - api_key: []
+
+securityDefinitions:
+    api_key:
+        type: "apiKey"
+        name: "key"
+        in: "query"
+    auth0_jwk:
+      authorizationUrl: "" #"https://vcubells.auth0.com/authorize"
+      flow: "implicit"
+      type: "oauth2"
+      x-google-issuer: "https://vcubells.auth0.com/"
+      x-google-jwks_uri: "https://vcubells.auth0.com/.well-known/jwks.json"
+      x-google-audiences: "https://test-vcn-ep.appspot.com"
+
