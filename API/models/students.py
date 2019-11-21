@@ -5,7 +5,7 @@ import config
 class Students(object):
 
     def __init__(self):
-        client = MongoClient('mongodb+srv://admin:admin@proyectofinal-4svv1.mongodb.net/test?retryWrites=true')
+        client = MongoClient('mongodb+srv://admin:admin@proyectofisvv1.mongodb.net/test?retryWrites=true')
         db = client.test
         self.collection = db.alumnos
 

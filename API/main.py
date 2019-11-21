@@ -52,15 +52,10 @@ def fetch_students():
     if request.method == 'GET':
         try:
             students_list = students.Students().find()
-            # Return all the records as query string parameters are not available
-            if students_list.count > 0:
-                # Prepare response if the users are found
-                return {'students': dumps(students_list, cls=Encoder)}
-            else:
-                # Return empty array if no users are found
-                return jsonify([])
-        except:
-            return '', 500
+            # Prepare response if the users are found
+            return {'students': dumps(students_list, cls=Encoder)}
+        except  Exception as e:
+            return jsonify(str(e))
     return ''
 
 @app.route("/api/v1/student/<_id>", methods=['GET'])
@@ -69,8 +64,8 @@ def fetch_student(_id):
         try:
             student = students.Students().findOne(_id)
             return {'student': dumps(student, cls=Encoder)}
-        except:
-            return '', 500
+        except  Exception as e:
+            return jsonify(str(e))
     return ''
 
 @app.route("/api/v1/subjects", methods=['GET'])
@@ -79,14 +74,9 @@ def fetch_subjects():
         try:
             subjects_list = subjects.Subjects().find()
             # Return all the records as query string parameters are not available
-            if subjects_list.count > 0:
-                # Prepare response if the users are found
-                return {'subjects': dumps(subjects_list, cls=Encoder)}
-            else:
-                # Return empty array if no users are found
-                return jsonify([])
-        except:
-            return '', 500
+            return {'subjects': dumps(subjects_list, cls=Encoder)}
+        except  Exception as e:
+            return jsonify(str(e))
     return ''
 
 @app.route("/api/v1/subject/<_id>", methods=['GET'])
@@ -95,8 +85,8 @@ def fetch_subject(_id):
         try:
             subject = subjects.Subjects().findOne(_id)
             return {'subject': dumps(subject, cls=Encoder)}
-        except:
-            return '', 500
+        except  Exception as e:
+            return jsonify(str(e))
     return ''
 
 
@@ -106,14 +96,9 @@ def fetch_teachers():
         try:
             teachers_list = teachers.Teachers().find()
             # Return all the records as query string parameters are not available
-            if teachers_list.count > 0:
-                # Prepare response if the users are found
-                return {'teachers': dumps(teachers_list, cls=Encoder)}
-            else:
-                # Return empty array if no users are found
-                return jsonify([])
-        except:
-            return '', 500
+            return {'teachers': dumps(teachers_list, cls=Encoder)}
+        except  Exception as e:
+            return jsonify(str(e))
     return ''
 
 @app.route("/api/v1/teacher/<_id>", methods=['GET'])
@@ -122,9 +107,10 @@ def fetch_teacher(_id):
         try:
             teacher = teachers.Teachers().findOne(_id)
             return {'teacher': dumps(teacher, cls=Encoder)}
-        except:
-            return '', 500
+        except  Exception as e:
+            return jsonify(str(e))
     return ''
 
 if __name__ == "__main__":
+    app.debug = True
     app.run(host="0.0.0.0", port=8080, debug=True)
