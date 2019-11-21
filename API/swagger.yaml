@@ -27,7 +27,7 @@ x-google-management:
           STANDARD: 10
 
 paths:
-  "/":
+  /:
     get:
       summary: "Home"
       description: "Pagina principal de la API"
@@ -41,8 +41,6 @@ paths:
       x-google-quota:
         metricCosts:
           "read-requests": 1
-      security:
-      - api_key: []
   /api/v1/students:
     get:
       summary: "Consulta de alumno"

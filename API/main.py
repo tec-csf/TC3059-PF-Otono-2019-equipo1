@@ -45,7 +45,7 @@ def active_sessions():
 
 @app.route("/", methods=['GET', 'POST'])
 def list():
-    return ''
+    return {'mes':'Bienvenido a la API de colegios'}
 
 @app.route("/api/v1/students", methods=['GET'])
 def fetch_students():
