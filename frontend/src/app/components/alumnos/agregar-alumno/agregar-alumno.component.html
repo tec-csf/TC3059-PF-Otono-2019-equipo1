@@ -2,6 +2,8 @@
   <form>
     <h2>Agregar Alumno</h2><br>
 
+    <input type="file" accept = ".csv" (change)="convertFile($event)" >
+
     <div class="form-group row">
       <label class="col-sm-5 col-form-label p-2 text-center">Matricula</label>
       <div class="col-sm-7 pull-left text-left">

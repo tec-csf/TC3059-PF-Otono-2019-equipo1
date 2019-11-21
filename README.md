@@ -101,12 +101,12 @@ _[Incluya una explicación del flujo de la información entre los diferentes com
 ##### 3.2.1.3 Navbar Component
 ##### 3.2.1.4 Profile Component
 
-#### 
+#### 3.2.2 Componentes del alumno
+#### 3.2.2 Add Alumno Component
+#### 3.2.2 List Alumnos Component
+#### 3.2.2 Ver Alumno Component
 
-#### 3.2.3 Add Alumno Component
-#### 3.2.4 List Alumnos Component
-#### 3.2.5 Ver Alumno Component
-#### 3.2.6 Home Component
+#### 3.2.3 Home Component
 #### 3.2.7 Home Component
 #### 3.2.8 Home Component
 
