@@ -10,8 +10,8 @@ frontend/node_modules
 frontend/node_modules/*
 backend/node_modules
 backend/node_modules/*
-microServices/CSVpoblate/node_modules
-microServices/CSVpoblate/node_modules/*
+microServices/poblate/node_modules
+microServices/poblate/node_modules/*
 
 # IDEs and editors
 /.idea
