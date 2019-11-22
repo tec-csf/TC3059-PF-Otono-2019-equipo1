@@ -1,15 +1,45 @@
 # Administración de colegios API REST
 
+## Lenguaje de programación
+La API esta desarrollada con el web framework Flask el cual utiliza Python como lenguaje
+
+## Librerías de funciones o dependencias
+Se desarrollo con la libreria Flask API la cual se encarga se generar una interfaz basica de usuario
+
 ## Uso
 ### Endpoints
-Todos los endpoints regresan un JSON con la información consultada
+La API unicamente tiene endponits de consulta, todos los endpoints regresan un JSON con la información requerida
 
-- /api/v1/students -> Consulte todos los estudiantes en la base de datos
-- /api/v1/student/<_id> -> Consulte un estudiante en la base de datos pasando su ID como parámetro
-- /api/v1/subjects -> Consulte todos las materias en la base de datos
-- /api/v1/subject/<_id> -> Consulte una materia en la base de datos pasando su ID como parámetro
-- /api/v1/teachers -> Consulte todos los maestros en la base de datos
-- /api/v1/teacher/<_id> -> Consulte un maestro en la base de datos pasando su ID como parámetro
+#### Método GET estudiantes 
+- Consulte todos los estudiantes en la base de datos
+- url -> /api/v1/students 
+- Regresa un JSON con toda la información de los estudiantes
+
+#### Método GET estudiante
+- Consulte un estudiante en la base de datos pasando su ID como parámetro
+- url -> /api/v1/student/<_id> 
+- Regresa un JSON con todas la información de un estudiante
+
+#### Método GET materias
+- Consulte todos las materias en la base de datos
+- url -> /api/v1/subjects 
+- Regresa un JSON con toda la información de las materias
+
+#### Método GET materia
+- Consulte una materia en la base de datos pasando su ID como parámetro
+- url -> /api/v1/subject/<_id>
+- Regresa un JSON con toda la información de una materia
+
+#### Método GET maestros
+- Consulte todos los maestros en la base de datos
+- url -> /api/v1/teachers
+- Regresa un JSON con toda la información de los maestros
+
+#### Método GET maestro
+- Consulte una maestro en la base de datos pasando su ID como parámetro
+- url -> /api/v1/teacher/<_id>
+- Regresa un JSON con toda la información de un maestro
+
 
 ### API KEY
 Para consultar los endpoints es necesario obtener una API KEY en el portal de GCP

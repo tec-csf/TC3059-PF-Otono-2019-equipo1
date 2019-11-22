@@ -156,25 +156,8 @@ Todas las dependencuas se encuentran en el archivo "package.json"
 - [Passport-jwt](http://www.passportjs.org/packages/passport-jwt/)
 
 ### 3.5 API
+La API se encuentra dentro de la carpeta API y [aqui](https://github.com/tec-csf/TC3059-PF-Otono-2019-equipo1/tree/master/API) se puede consultar
 
-_[Incluya aquí una explicación de la solución utilizada para implementar la API del proyecto. No olvide incluir las ligas o referencias donde se puede encontrar información de los lenguajes de programación, frameworks y librerías utilizadas.]_
-
-#### 3.5.1 Lenguaje de programación
-
-#### 3.5.2 Framework
-
-#### 3.5.3 Librerías de funciones o dependencias
-
-_[Incluya aquí una explicación de cada uno de los endpoints que forman parte de la API. Cada endpoint debe estar correctamente documentado.]_
-
-_[Por cada endpoint debe incluir lo siguiente:]_
-
-- **Descripción**:
-- **URL**:
-- **Verbos HTTP**:
-- **Headers**:
-- **Formato JSON del cuerpo de la solicitud**:
-- **Formato JSON de la respuesta**:
 
 ## 3.6 Pasos a seguir para utilizar el proyecto
 
