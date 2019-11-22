@@ -269,7 +269,7 @@ https://console.cloud.google.com
 
 2. Modifica el archivo "backendDeployment.yaml"; cambia el nombre de la imagen del backend
 
-Línea 36
+Línea 36: 
 ```imagen: gcr.io/[ID del proyecto de GCP]/backend-image```
 
 3. Crea la conexión con el cluster creado previamente
@@ -315,24 +315,24 @@ route: String = 'http://[IP externa del backend-service]:[Puerto del backend-ser
 
 `cd ../frontend`
 
-1. Modifica el archivo "frontendDeployment.yaml"; cambia el nombre de la imagen del frontend
+2. Modifica el archivo "frontendDeployment.yaml"; cambia el nombre de la imagen del frontend
 
-Línea 36
+Línea 36: 
 ```imagen: gcr.io/[ID del proyecto de GCP]/frontend-image```
 
-2. Crea la conexión con el cluster creado previamente
+3. Crea la conexión con el cluster creado previamente
 
 `gcloud container clusters get-credentials [Nombre del cluster] --zone [Zona del cluster] --project [ID del proyecto de GCP]`
 
-3. Desplegar la aplicación en el cluster
+4. Desplegar la aplicación en el cluster
 
 `kubectl apply -f frontendDeployment.yaml`
 
-4. Comprobar que el pod está funcionando correctamente (El Status debe ser Running)
+5. Comprobar que el pod está funcionando correctamente (El Status debe ser Running)
 
 `kubectl get pods`
 
-5. Obtener la dirección IP externa y el puerto
+6. Obtener la dirección IP externa y el puerto
 
 `kubectl get service`
 
