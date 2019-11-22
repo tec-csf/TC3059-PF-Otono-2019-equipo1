@@ -243,15 +243,63 @@ https://console.cloud.google.com
 
 5. Dentro de la plataforma entra a Compute/Kubernetes Engine y crea un nuevo cluster
 
-#### En tu computadora
+#### En tu computadora (BACKEND)
 
 1. Clonar el repositorio de github
 
 `git clone https://github.com/tec-csf/TC3059-PF-Otono-2019-equipo1.git`
 
-2. Cambiarse a la carpeta del frontend del proyecto
+2. Cambiarse a la carpeta del backend del proyecto
 
-`cd TC3059-PF-Otono-2019-equipo1/frontend`
+`cd TC3059-PF-Otono-2019-equipo1/backend`
+
+3. Crear la imagen del backend usando el comando
+
+`docker build . --tag gcr.io/[id del proyecto de GCP]/backend-image`
+
+4. Dar push a la imagen del backend usando el comando
+
+`gcloud docker -- push gcr.io/[ID del proyecto de GCP]/backend-image`
+
+#### En GCLOUD console (BACKEND)
+
+1. Cambiarse a la carpeta del backend del proyecto
+
+`cd TC3059-PF-Otono-2019-equipo1/backend`
+
+2. Modifica el archivo "backendDeployment.yaml"; cambia el nombre de la imagen del backend
+
+Línea 36
+`imagen: gcr.io/[ID del proyecto de GCP]/backend-image`
+
+3. Crea la conexión con el cluster creado previamente
+
+`gcloud container clusters get-credentials [Nombre del cluster] --zone [Zona del cluster] --project [ID del proyecto de GCP]`
+
+4. Desplegar la aplicación en el cluster
+
+`kubectl apply -f backendDeployment.yaml`
+
+5. Comprobar que el pod está funcionando correctamente (El Status debe ser Running)
+
+`kubectl get pods`
+
+6. Obtener la dirección IP externa y el puerto del backend-service
+
+`kubectl get service`
+
+#### En tu computadora (FRONTEND)
+
+1. Cambiarse a la carpeta del frontend del proyecto
+
+`cd ../frontend`
+
+2. Modificar el siguiente archivo: src/app/services/auth.service.ts
+
+Cambiar la ruta de conexión en la linea 24:
+```
+route: String = 'http://[IP externa del backend-service]:[Puerto del backend-service]'; 
+```
 
 3. Crear la imagen del frontend usando el comando
 
@@ -261,27 +309,16 @@ https://console.cloud.google.com
 
 `gcloud docker -- push gcr.io/[ID del proyecto de GCP]/frontend-image`
 
-5. Cambiarse a la carpeta del backend del proyecto
+#### En GCLOUD console (FRONTEND)
 
-`cd ../backend`
+1. Cambiarse a la carpeta del frontend del proyecto
 
-6. Crear la imagen del backend usando el comando
+`cd ../frontend`
 
-`docker build . --tag gcr.io/[id del proyecto de GCP]/backend-image`
+1. Modifica el archivo "frontendDeployment.yaml"; cambia el nombre de la imagen del frontend
 
-7. Dar push a la imagen del backend usando el comando
-
-`gcloud docker -- push gcr.io/[ID del proyecto de GCP]/backend-image`
-
-#### En GCLOUD console
-
-1. Modifica el archivo "appDeployment.yaml"; cambia el nombre de la imagen del frontend y la del backend
-
-Línea 37
+Línea 36
 `imagen: gcr.io/[ID del proyecto de GCP]/frontend-image`
-
-Línea 42
-`imagen: gcr.io/[ID del proyecto de GCP]/backend-image`
 
 2. Crea la conexión con el cluster creado previamente
 
@@ -289,23 +326,19 @@ Línea 42
 
 3. Desplegar la aplicación en el cluster
 
-`kubectl apply -f appDeployment.yaml`
+`kubectl apply -f frontendDeployment.yaml`
 
 4. Comprobar que el pod está funcionando correctamente (El Status debe ser Running)
 
 `kubectl get pods`
 
-5. Obtener la dirección ip externa y el puerto
+5. Obtener la dirección IP externa y el puerto
 
 `kubectl get service`
 
-6. Exponer la apliación a internet
-
-`kubectl expose deployment colegio-app --type=LoadBalancer --port 80 --target-port 4200`
-
 7. Acceder a la aplicación en un browser
 
-`http://[IP externa de colegio-app]`
+`http://[IP externa del frontend-service]:[Puerto del frontend-service]`
 
 ## 4. Referencias
 
