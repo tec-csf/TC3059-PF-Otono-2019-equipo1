@@ -17,7 +17,8 @@ const config = require('./config/database');
 
 // Connect to the database
 mongoose.connect(config.database, {
-  useNewUrlParser: true
+  useNewUrlParser: true,
+  useUnifiedTopology: true
 });
 
 // Connect to the database and log out if it was successful
@@ -69,11 +70,6 @@ app.get('/', (req, res) => {
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'public/index.html'));
 });
-
-// Start Server on the port setted
-// app.listen(PORT, HOST, () => {
-//   console.log('Server started on ' + host + ':' + port);
-// });
 
 app.listen(PORT, HOST);
 console.log(`Running on http://${HOST}:${PORT}`);

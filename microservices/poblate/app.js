@@ -1,9 +1,19 @@
-inputFilePath = "./alumnos.csv";
-const fs = require("fs");
-const csv = require("csv-parser");
-const mongoose = require("mongoose");
-const config = require("./config/database");
-const Alumno = require("./config/alumno");
+'use strict';
+
+// Make the comunication with a server to create petitions
+const express = require('express');
+// Make the paths for the paths to create the petitions
+const path = require('path');
+// Parses the information in the body of petitions
+const bodyParser = require('body-parser');
+// Cross-Origin Resource Sharing needed for express to get headers
+const cors = require('cors');
+// Strategy for authenticating with a JSON Web Token.
+const passport = require('passport');
+// MongoDB object modeling tool designed to work in an asynchronous environment.
+const mongoose = require('mongoose');
+// Configuration of the database
+const config = require('./config/database');
 
 // Connect to the database
 mongoose.connect(config.database, {
@@ -21,67 +31,43 @@ mongoose.connection.on("error", err => {
   console.log("Database error: " + err);
 });
 
-let dataRecived = [{ type: "alumnos" }];
+// Start our server app to make the petitions
+const app = express();
 
-fs.createReadStream(inputFilePath)
-  .pipe(csv())
-  .on("data", function(data) {
-    try {
-      dataRecived.push(data);
-    } catch (err) {
-      //error handler
-    }
-  })
-  .on("end", function() {
-    reciveData(dataRecived);
-  });
+// get all the routes for make the petitions in the backend
+const alumnos = require('./routes/alumnos');
+const profesores = require('./routes/profesores');
 
-function reciveData(data) {
-  if (data[0].type === "alumnos") {
-    console.log("The poblation will be for the students");
-    poblateAlumnos(data.slice(1));
-  } else {
-    console.log("The poblation will be for the professors");
-    poblateProfessors(data.slice(1));
-  }
-}
+// Constants
+const PORT = 3000;
+const HOST = '0.0.0.0';
 
-function poblateAlumnos(alumnos) {
-  alumnos.forEach(alumno => {
-    let newAlumno = new Alumno({
-      permiso: 0,
-      matricula: alumno["matricula"],
-      curp: alumno["curp"],
-      nombre: alumno["nombre"],
-      paterno: alumno["paterno"],
-      materno: alumno["materno"],
-      nivel: alumno["nivel"],
-      grado: alumno["grado"],
-      grupo: alumno["grupo"],
-      fechaNacimiento: alumno["fechaNacimiento"],
-      email: alumno["email"],
-      password: alumno["password"]
-    });
+// CORS Middleware its for make the routes to create the petitions
+app.use(cors());
 
-    let matricula = alumno["matricula"];
+// Set Static Folder
+app.use(express.static(path.join(__dirname, 'public')));
 
-    Alumno.getAlumnoByMatricula(matricula, (err, alumno) => {
-      if (err) throw err;
-      if (alumno) {
-        console.log("Ya existe un alumno con la matricula: " + matricula);
-      } else {
-        Alumno.addAlumno(newAlumno, (err, alumno) => {
-          if (err) {
-            console.log("No se pudo registrar al alumno");
-          } else {
-            console.log(
-              "El alumno con matricula: " +
-                newAlumno.matricula +
-                " ha sido registrado"
-            );
-          }
-        });
-      }
-    });
-  });
-}
+// Body Parser Middleware to grab the data that we send or recive
+app.use(bodyParser.json());
+
+// Passport Middleware
+app.use(passport.initialize());
+app.use(passport.session());
+
+require('./config/passport')(passport);
+
+app.use('/alumnos', alumnos);
+app.use('/profesores', profesores);
+
+// Index Route / show as invalid end point
+app.get('/', (req, res) => {
+  res.send('Invalid Endpoint');
+});
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public/index.html'));
+});
+
+app.listen(PORT, HOST);
+console.log(`Running on http://${HOST}:${PORT}`);

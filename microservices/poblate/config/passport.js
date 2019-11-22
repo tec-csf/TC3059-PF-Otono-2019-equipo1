@@ -1,7 +1,7 @@
 // Documentation in http://www.passportjs.org/packages/passport-jwt/
 const JwtStrategy = require('passport-jwt').Strategy;
 const ExtractJwt = require('passport-jwt').ExtractJwt;
-const Alumno = require('./alumno');
+const Alumno = require('../models/alumno');
 const config = require('./database');
 
 module.exports = function(passport) {
