@@ -1,14 +1,10 @@
 const express = require("express");
 const router = express.Router();
-const passport = require("passport");
-const jwt = require("jsonwebtoken");
-const config = require("../config/database");
 const Alumno = require("../models/alumno");
 
 router.post("/poblate", (req, res, next) => {
   let alumnos = req.body;
-  var response = [];
-
+  var promeses = []
   alumnos.forEach(alumno => {
     let newAlumno = new Alumno({
       permiso: 0,
@@ -27,34 +23,35 @@ router.post("/poblate", (req, res, next) => {
 
     let matricula = alumno["matricula"];
 
-    Alumno.getAlumnoByMatricula(matricula, (err, alumno) => {
+    promeses.push(new Promise((resolve) => {Alumno.getAlumnoByMatricula(matricula, (err, alumno) => {
       if (err) throw err;
       if (alumno) {
-        response.push({
+        resolve({
           success: false,
           msg: "Ya existe un alumno con esa matricula: " + matricula
         });
       } else {
         Alumno.addAlumno(newAlumno, (err, alumno) => {
           if (err) {
-            response.push({
+            resolve({
               success: false,
               msg: "No se pudo registrar al alumno con matricula: " + newAlumno.matricula
             });
           } else {
-            response.push({
+            resolve({
               success: true,
               msg: "Alumno con matricula: " + newAlumno.matricula + "registrado exitosamente"
             });
           }
         });
       }
-      console.log(response);
-    });
+    })}));
   });
-
-  console.log(response);
-  return res.json(response);
+  
+  Promise.all(promeses).then(responses => {
+    console.log(responses)
+    return res.json(responses);
+  })
 });
 
 module.exports = router;
