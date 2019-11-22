@@ -270,7 +270,9 @@ https://console.cloud.google.com
 2. Modifica el archivo "backendDeployment.yaml"; cambia el nombre de la imagen del backend
 
 Línea 36: 
-```imagen: gcr.io/[ID del proyecto de GCP]/backend-image```
+```yaml
+imagen: gcr.io/[ID del proyecto de GCP]/backend-image
+```
 
 3. Crea la conexión con el cluster creado previamente
 
@@ -297,7 +299,7 @@ Línea 36:
 2. Modificar el siguiente archivo: src/app/services/auth.service.ts
 
 Cambiar la ruta de conexión en la linea 24:
-```
+```typescript
 route: String = 'http://[IP externa del backend-service]:[Puerto del backend-service]'; 
 ```
 
@@ -318,7 +320,9 @@ route: String = 'http://[IP externa del backend-service]:[Puerto del backend-ser
 2. Modifica el archivo "frontendDeployment.yaml"; cambia el nombre de la imagen del frontend
 
 Línea 36: 
-```imagen: gcr.io/[ID del proyecto de GCP]/frontend-image```
+```yaml
+imagen: gcr.io/[ID del proyecto de GCP]/frontend-image
+```
 
 3. Crea la conexión con el cluster creado previamente
 
