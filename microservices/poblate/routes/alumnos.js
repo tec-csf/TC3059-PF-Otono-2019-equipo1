@@ -40,7 +40,7 @@ router.post("/poblate", (req, res, next) => {
           } else {
             resolve({
               success: true,
-              msg: "Alumno con matricula: " + newAlumno.matricula + "registrado exitosamente"
+              msg: "Alumno con matricula: " + newAlumno.matricula + " registrado exitosamente"
             });
           }
         });
@@ -49,7 +49,7 @@ router.post("/poblate", (req, res, next) => {
   });
   
   Promise.all(promeses).then(responses => {
-    console.log(responses)
+    // console.log(responses)
     return res.json(responses);
   })
 });

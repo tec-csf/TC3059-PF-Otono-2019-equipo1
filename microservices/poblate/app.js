@@ -39,7 +39,7 @@ const alumnos = require('./routes/alumnos');
 const profesores = require('./routes/profesores');
 
 // Constants
-const PORT = 3000;
+const PORT = 3100;
 const HOST = '0.0.0.0';
 
 // CORS Middleware its for make the routes to create the petitions

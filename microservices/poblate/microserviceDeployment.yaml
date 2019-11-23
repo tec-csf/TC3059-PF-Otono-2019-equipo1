@@ -1,0 +1,39 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: microservice
+  labels:
+    name: microservice
+spec:
+  ports:
+    - name: http
+      port: 80
+      targetPort: 3100
+      protocol: TCP
+  selector:
+    name: microservice-app
+  type: LoadBalancer
+
+---
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: microservice-app
+  labels:
+    name: microservice-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: microservice-app
+  template:
+    metadata:
+      labels:
+        name: microservice-app
+    spec:
+      containers:
+        - name: poblate
+          image: poblate-image
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 3100
