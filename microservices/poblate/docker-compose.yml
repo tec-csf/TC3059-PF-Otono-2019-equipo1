@@ -1,0 +1,8 @@
+ 
+version: '2'
+services:
+    volumes:
+     - .:/usr/src/app
+    depends_on:
+      - mongo
+    command: ["./wait_for_it.sh", "--", "npm", "start"]
