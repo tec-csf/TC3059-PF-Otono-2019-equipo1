@@ -21,7 +21,8 @@ export class AuthService {
   matriculaVerAlumno: any;
   matriculaVerProfesor: any;
 
-  route: String = 'http://34.67.195.249:80';
+  route: String = 'http://localhost:3000';
+  routeMicroservice: String = 'http://localhost:3100';
 
   grupoAlumnos: Object = {
     nivel: String,
@@ -35,6 +36,15 @@ export class AuthService {
     private http: Http,
     public jwtHelper: JwtHelperService
   ) { }
+
+  /************ MICROSERVICE ************/
+
+  poblateAlumnos(alumnos) {
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this.http.post(this.routeMicroservice + '/alumnos/poblate', alumnos, { headers: headers })
+      .pipe(map(res => res.json()));
+  }
 
   /************ ALUMNO ************/
 

@@ -7,6 +7,10 @@ import { AuthService } from '../../../services/auth.service';
 // Import of the module for the flash messages
 import { FlashMessagesService } from 'angular2-flash-messages';
 
+import * as Papa from 'papaparse';
+
+let obj: AgregarAlumnoComponent;
+
 @Component({
   selector: 'app-agregar-alumno',
   templateUrl: './agregar-alumno.component.html',
@@ -26,7 +30,7 @@ export class AgregarAlumnoComponent implements OnInit {
   password: String;
   passwordConfirmation: String;
 
-  file: File;
+  alumnoList: [];
 
   constructor(
     private flashMessage: FlashMessagesService,
@@ -35,6 +39,7 @@ export class AgregarAlumnoComponent implements OnInit {
   }
 
   ngOnInit() {
+    obj = this;
   }
 
   agregarAlumno() {
@@ -75,6 +80,35 @@ export class AgregarAlumnoComponent implements OnInit {
       });
     } else {
       this.flashMessage.show('Las contraseñas no coinciden', { cssClass: 'alert-danger', timeout: 3000 });
+    }
+  }
+
+  agregarAlumnos() {
+    console.log(this.alumnoList);
+    this.authService.poblateAlumnos(this.alumnoList).subscribe(data => {
+      if (data) {
+        data.forEach(response => {
+          if (response.success) {
+            this.flashMessage.show(response.msg, { cssClass: 'alert-success', timeout: 3000 });
+          } else {
+            this.flashMessage.show(response.msg, { cssClass: 'alert-danger', timeout: 3000 });
+          }
+        });
+      } else {
+        console.log('Not called');
+      }
+    });
+  }
+
+  onChange(files: File[]) {
+    if (files[0]) {
+      Papa.parse(files[0], {
+        header: true,
+        skipEmptyLines: true,
+        complete: (result, file) => {
+          this.alumnoList = result.data;
+        }
+      });
     }
   }
 
