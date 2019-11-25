@@ -74,11 +74,11 @@ https://console.cloud.google.com
 
 3. Crear la imagen del backend usando el comando
 
-`docker build . --tag gcr.io/[id del proyecto de GCP]/poblate-image`
+`docker build . --tag gcr.io/[id del proyecto de GCP]/microservice-image`
 
 4. Dar push a la imagen del backend usando el comando
 
-`gcloud docker -- push gcr.io/[ID del proyecto de GCP]/poblate-image`
+`gcloud docker -- push gcr.io/[ID del proyecto de GCP]/microservice-image`
 
 #### En GCLOUD console
 

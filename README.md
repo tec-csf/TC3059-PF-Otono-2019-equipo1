@@ -89,13 +89,14 @@ A continuación aparecen descritos los diferentes elementos que forman parte de 
 
 ![alt text](./arquitectura.png)
 
-_[Incluya aquí un diagrama donde se aprecie la arquitectura de la solución propuesta, así como la interacción entre los diferentes componentes de la misma.]_
-
-_[Incluya una explicación del flujo de la información entre los diferentes componentes.]_
+1. Se compilan las diferentes imagenes de docker y se suben a container registry
+2. En un kubernetes engine se crea un cluster el cual creara 3 pods con las imagenes de la aplicacion
+3. Se creara un servicio type: Load Balancer el cual expondra los puertos de acceso de los pods
+4. El cliente de conecta a el servicio del frontend de la aplicación, por lo que Angular es un single page aplication y corre desde tu navegador las peticiones se haran desde la aplicación que esta corriendo en tu navegador a el servicio del backend y del microservicio
+5. Los pods correspondientes a los servicios del backend y del microservicio de conectan a la base de datos de MongoBD en Mongo Atlas
+6. La API regresa los datos de todos los usuarios por lo cual tienes que tener permiso para usarla y para ello se creo un OAuth verification que esta te deja usar la API y ella se conecta a la base de datos en Mongo Atlas para regresar el resultado
 
 ### 3.2 Descripción de los componentes
-
-
 
 ### 3.3 Frontend
 

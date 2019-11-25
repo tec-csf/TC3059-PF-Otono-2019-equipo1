@@ -32,8 +32,8 @@ spec:
         name: microservice-app
     spec:
       containers:
-        - name: poblate
-          image: poblate-image
+        - name: microservice
+          image: microservice-image
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 3100
