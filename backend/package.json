@@ -21,7 +21,7 @@
     "nodemon": "^1.18.10",
     "passport": "*",
     "passport-jwt": "*",
-    "redis": "^2.8.0",
+    "redis": "^3.1.1",
     "to": "^0.2.9",
     "update": "^0.7.4"
   },
